@@ -8,7 +8,7 @@ import argparse
 import pickle
 import os
 
-setproctitle.setproctitle('Reply buffer Multi Process')
+setproctitle.setproctitle('Reply buffer')
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-num_sess", type=int, default=3)

@@ -18,7 +18,7 @@ parser.add_argument("-num_sess", type=int, default=3)
 parser.add_argument("-num_items", type=int, default=5)
 args = parser.parse_args()
 
-setproctitle.setproctitle(f'Smorl RL - {args.num_sess} - {args.num_items}') #Change the title of the process
+setproctitle.setproctitle(f'Smorl RL - {args.num_sess} - {args.num_items}')
 
 class MSRC(nn.Module):
     def __init__(self, state_size, hidden_size, input_size, batch_size, num_items, num_items_in_session = 5):

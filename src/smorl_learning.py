@@ -4,13 +4,10 @@ from utils import *
 import torch
 import torch.nn as nn
 import random
-import math
 import pickle
-from collections import deque, namedtuple
 import sklearn.preprocessing as pp
 import setproctitle
 import argparse
-import sys
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-attr", type=str, default='no')
@@ -18,7 +15,7 @@ parser.add_argument("-num_sess", type=int, default=3)
 parser.add_argument("-num_items", type=int, default=5)
 args = parser.parse_args()
 
-setproctitle.setproctitle(f'Smorl RL - {args.num_sess} - {args.num_items}')
+setproctitle.setproctitle(f'Smorl RL - {args.num_sess} - {args.num_items}') #Change the title of the process
 
 class MSRC(nn.Module):
     def __init__(self, state_size, hidden_size, input_size, batch_size, num_items, num_items_in_session = 5):

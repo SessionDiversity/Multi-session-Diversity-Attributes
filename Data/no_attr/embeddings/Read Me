@@ -1,0 +1,5 @@
+This directory contain the emebddings of items in the case of using 5 and 15 attributes.
+
+File name contains the name of the attribute and the case where it is used. Example: embeddings_movies_{name_of_attribute}_{case_nb_attributes}.pt
+
+The remaining files can be found using the following link : https://drive.google.com/drive/folders/11VEMPxGnLYkotQgr9g-avaH8vqpV6aO7?usp=sharing

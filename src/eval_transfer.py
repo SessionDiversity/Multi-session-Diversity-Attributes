@@ -160,13 +160,13 @@ for execution in range(nb_exec):
 
     num_add_attr = 0
 
-    with open(embedding_n_results_path+f'attributes_{num_add_attr}', "rb") as f:
+    with open(embedding_n_results_path+f'attributes/attributes_{num_add_attr}', "rb") as f:
         attributes = pickle.load(f)
 
     embeddings_dict = dict()
 
     for i,attr in enumerate(attributes):
-        embeddings = torch.load(embedding_n_results_path+f'embeddings_movies_{attr}_{num_add_attr}.pt')
+        embeddings = torch.load(embedding_n_results_path+f'embeddings/embeddings_movies_{attr}_{num_add_attr}.pt')
         embeddings = embeddings[1:,:]
         similarity_matrix = pp.normalize(embeddings, axis=1)
         similarity_matrix = similarity_matrix @ similarity_matrix.T

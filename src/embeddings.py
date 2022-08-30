@@ -148,7 +148,7 @@ for d in range(num_add_attr):
 
 attributes = attributes+add_attr
 
-with open(embedding_n_results_path+f'attributes_{num_add_attr}', "wb") as f:
+with open(embedding_n_results_path+f'attributes/attributes_{num_add_attr}', "wb") as f:
     pickle.dump(attributes, f)
 
 for attr in attributes:
@@ -307,5 +307,5 @@ for attr in attributes:
         print('Epoch:', epoch, '\tLoss:', loss)
 
     weights = list(model.parameters())[0].detach().numpy()
-    torch.save(weights, embedding_n_results_path+f'embeddings_movies_{attr}_{num_add_attr}.pt')
+    torch.save(weights, embedding_n_results_path+f'embeddings/embeddings_movies_{attr}_{num_add_attr}.pt')
 

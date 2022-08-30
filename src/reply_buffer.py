@@ -22,7 +22,7 @@ num_items_in_session = args.num_items
 
 embedding_n_results_path = '../Data/no_attr/'
 
-with open(embedding_n_results_path+f'attributes_{num_add_attr}', "rb") as f:
+with open(embedding_n_results_path+f'attributes/attributes_{num_add_attr}', "rb") as f:
     attributes = pickle.load(f)
 
 data_path = '../Data/data_files/movie_lens/10M/'
@@ -37,7 +37,7 @@ items = df.song_id.unique()
 embeddings_dict = dict()
 
 for i,attr in enumerate(attributes):
-    embeddings = torch.load(embedding_n_results_path+f'embeddings_movies_{attr}_{num_add_attr}.pt')
+    embeddings = torch.load(embedding_n_results_path+f'embeddings/embeddings_movies_{attr}_{num_add_attr}.pt')
     embeddings = embeddings[1:,:]
     similarity_matrix = pp.normalize(embeddings, axis=1)
     similarity_matrix = similarity_matrix @ similarity_matrix.T

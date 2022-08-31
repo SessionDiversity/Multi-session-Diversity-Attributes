@@ -96,6 +96,7 @@ class Attr_choice_Smorl(nn.Module):
 parser = argparse.ArgumentParser()
 parser.add_argument("-num_sess", type=int, default=3)
 parser.add_argument("-num_items", type=int, default=5)
+parser.add_argument("-nb_exec", type=int, default=3)
 args = parser.parse_args()
 
 data_path = '../Data/data_files/movie_lens/10M/'
@@ -120,7 +121,7 @@ with open(data_path+'user_profiles_utility.pkl', 'rb') as f:
 
 all_results = pd.DataFrame(columns=['method','nb_attributes','precision','recall','diversity','time','alpha_ndcg','attr_precision'])
 
-nb_exec = 3
+nb_exec = args.nb_exec
 
 params = [
     [f'{0.003}_{100}_{64}'],
@@ -537,14 +538,14 @@ for execution in range(0, nb_exec):
                 all_results.loc[len(all_results)] = ['Knn', num_add_attr+5, [100*i/num_tot for i in precs_knn], [100*i/num_tot for i in recs_knn], 
                                                         np.array([i/num_tot for i in intras_knn]).mean(), 0, [100*i/num_tot for i in alpha_ndcg_knn], 0]
             
-    all_results.to_csv(f'all_results_{execution}_topk.csv',index=False)
+    all_results.to_csv(embedding_n_results_path+f'test_results/all_results_{execution}_topk.csv',index=False)
 
 for i in range(nb_exec):
-    local = pd.read_csv(f'all_results_{i}_topk.csv')
+    local = pd.read_csv(embedding_n_results_path+f'test_results/all_results_{i}_topk.csv')
 
     if i == 0:
         df = local
     else:
         df = df.append(local)
 
-df.to_csv(f'all_results_topk_{num_sessions}.csv',index=False)
+df.to_csv(embedding_n_results_path+f'test_results/all_results_topk_{num_sessions}.csv',index=False)

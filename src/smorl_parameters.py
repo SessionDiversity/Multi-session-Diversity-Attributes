@@ -13,11 +13,12 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-attr", type=str, default='no')
 parser.add_argument("-num_sess", type=int, default=3)
 parser.add_argument("-num_items", type=int, default=5)
+parser.add_argument("-num_add_attr", type=int, default=0)
 args = parser.parse_args()
 
 setproctitle.setproctitle(f'Smorl RL Parameters - {args.num_sess} - {args.num_items}')
 
-num_add_attr = 0
+num_add_attr = args.num_add_attr
 
 class MSRC(nn.Module):
     def __init__(self, state_size, hidden_size, input_size, batch_size, num_items, num_items_in_session = 5):

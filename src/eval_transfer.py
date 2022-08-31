@@ -87,6 +87,7 @@ def attr_same(attr1, attr2):
 parser = argparse.ArgumentParser()
 parser.add_argument("-num_sess", type=int, default=3)
 parser.add_argument("-num_items", type=int, default=5)
+parser.add_argument("-num_add_attr", type=int, default=0)
 args = parser.parse_args()
 
 data_path = '../Data/data_files/movie_lens/10M/'
@@ -158,7 +159,7 @@ param = [f'{0.003}_{100}_{64}']
 
 for execution in range(nb_exec):
 
-    num_add_attr = 0
+    num_add_attr = args.num_add_attr
 
     with open(embedding_n_results_path+f'attributes/attributes_{num_add_attr}', "rb") as f:
         attributes = pickle.load(f)
@@ -309,14 +310,14 @@ for execution in range(nb_exec):
             all_results.loc[len(all_results)] = [f'SMORL_{classe}', test_classe, [100*i/num_tot for i in precs_smorl], [100*i/num_tot for i in recs_smorl], 
                                                 [i/num_tot for i in intras_smorl], 0, [100*i/num_tot for i in alpha_ndcg_smorl], 100*attribute_prec_smorl/num_tot]
           
-    all_results.to_csv(f'all_results_{execution}_transfer_div.csv',index=False)
+    all_results.to_csv(embedding_n_results_path+f'test_results/all_results_{execution}_transfer_div.csv',index=False)
 
 for i in range(nb_exec):
-    local = pd.read_csv(f'all_results_{i}_transfer_div.csv')
+    local = pd.read_csv(embedding_n_results_path+f'test_results/all_results_{i}_transfer_div.csv')
 
     if i == 0:
         df = local
     else:
         df = df.append(local)
 
-df.to_csv(f'all_results_topk_{num_sessions}_transfer_div.csv',index=False)
+df.to_csv(embedding_n_results_path+f'test_results/all_results_topk_{num_sessions}_transfer_div.csv',index=False)
